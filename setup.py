@@ -22,7 +22,7 @@ setup(
     description=u'Приложение для интеграции платежной системы '
                 u'ROBOKASSA в проекты на Django.'.encode('utf8'),
     long_description=long_description,
-    classifiers=(
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -37,5 +37,5 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Natural Language :: Russian',
-    ),
+    ]
 )

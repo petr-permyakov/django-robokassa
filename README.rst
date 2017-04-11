@@ -36,11 +36,6 @@ ROBOKASSA (http://robokassa.ru/Doc/Ru/Interface.aspx). Приложение ре
     $ python manage.py migrate
 
 
-Совместимость:
---------------
-* Python: 2.6, 2.7
-* Django: 1.4, 1.5, 1.6, 1.7
-
 
 Настройка
 =========
@@ -284,7 +279,7 @@ urls.py
   есть переменная form класса ``FailRedirectForm`` или ``SuccessRedirectForm``.
 
 
-Compatibility
+Совместимость
 -------------
 * Python: 2.6, 2.7, pypy, 3.4, 3.5, pypy3
 * Django: 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9
