@@ -57,7 +57,7 @@ class BaseRobokassaForm(forms.Form):
 
 class RobokassaForm(BaseRobokassaForm):
     # login магазина в обменном пункте
-    MrchLogin = forms.CharField(max_length=20)
+    MerchantLogin = forms.CharField(max_length=20)
 
     # требуемая к получению сумма
     OutSum = forms.DecimalField(
@@ -67,7 +67,7 @@ class RobokassaForm(BaseRobokassaForm):
     InvId = forms.IntegerField(min_value=0, required=False)
 
     # описание покупки
-    Desc = forms.CharField(max_length=100, required=False)
+    Description = forms.CharField(max_length=100, required=False)
 
     # контрольная сумма MD5
     SignatureValue = forms.CharField(max_length=32)
@@ -85,6 +85,11 @@ class RobokassaForm(BaseRobokassaForm):
     # Может пригодиться для использования в шаблоне.
     target = FORM_TARGET
 
+    # передается информация о перечне товаров/услуг, количестве, 
+    # цене и ставке налога по каждой позиции
+    # В формате URL-encoded JSON
+    Receipt = forms.CharField(required=False)
+
     def __init__(self, *args, **kwargs):
         super(RobokassaForm, self).__init__(*args, **kwargs)
 
@@ -96,7 +101,7 @@ class RobokassaForm(BaseRobokassaForm):
         for field in self.fields:
             self.fields[field].widget = forms.HiddenInput()
 
-        self.fields['MrchLogin'].initial = self.login
+        self.fields['MerchantLogin'].initial = self.login
         self.fields['SignatureValue'].initial = self._get_signature()
 
     def get_redirect_url(self):
@@ -128,7 +133,8 @@ class RobokassaForm(BaseRobokassaForm):
             return '' if value is None else to_unicode(value)
 
         standard_part = ':'.join(
-            [_val('MrchLogin'), _val('OutSum'), _val('InvId'), self.password1])
+            [_val('MerchantLogin'), _val('OutSum'), _val('InvId'), _val('Receipt'), self.password1])
+        print(standard_part)
         return self._append_extra_part(standard_part, _val)
 
 
