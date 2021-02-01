@@ -134,7 +134,6 @@ class RobokassaForm(BaseRobokassaForm):
 
         standard_part = ':'.join(
             [_val('MerchantLogin'), _val('OutSum'), _val('InvId'), _val('Receipt'), self.password1])
-        print(standard_part)
         return self._append_extra_part(standard_part, _val)
 
 
